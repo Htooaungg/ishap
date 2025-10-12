@@ -1,34 +1,41 @@
-# ⏱️ ishap — Tiny Reusable Fixed-Timestep Runner
-
 <p align="center">
-  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
-  <a href="https://en.cppreference.com/w/cpp/compiler_support"><img alt="C++17+" src="https://img.shields.io/badge/C%2B%2B-17%2B-orange.svg"></a>
-  <img alt="Header-only" src="https://img.shields.io/badge/Header--only-yes-success.svg">
-  <a href="https://cmake.org"><img alt="CMake 3.15+" src="https://img.shields.io/badge/CMake-3.15%2B-informational.svg"></a>
-  <img alt="Lines of Code" src="https://img.shields.io/badge/LOC-%3C500-lightgrey.svg">
+  <h1 align="center">⏱️ ishap</h1>
+  <p align="center"><b>Tiny Reusable Fixed-Timestep Runner</b></p>
+
+  <p align="center">
+    <a href="https://github.com/mickryley/ishap"><img alt="Version" src="https://img.shields.io/badge/version-v0.1.0-lightblue.svg"></a>
+    <a href="https://github.com/mickryley/ishap/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/mickryley/ishap.svg"></a>
+    <a href="https://en.cppreference.com/w/cpp/compiler_support"><img alt="C++17+" src="https://img.shields.io/badge/C%2B%2B-17%2B-orange.svg"></a>
+    <img alt="Header-only" src="https://img.shields.io/badge/Header--only-yes-success.svg">
+    <a href="https://cmake.org"><img alt="CMake 3.15+" src="https://img.shields.io/badge/CMake-3.15%2B-informational.svg"></a>
+    <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+    <img alt="Lines of Code" src="https://img.shields.io/badge/LOC-%3C500-lightgrey.svg">
+  </p>
 </p>
 
 ---
 
-> **ishap** is a minimal, header-only fixed–timestep runner for deterministic update loops.  
-> It provides a clear, unit-safe interface using `std::chrono`, robust clamping, scaling, and substep controls — all with zero dependencies.  
-> A simple, reusable utility built for engines, simulations, and real-time systems — written in an afternoon at a cozy countryside café.
+> **ishap** is a lightweight, header-only fixed timestep runner for deterministic update loops.  
+> It offers a clean, unit-safe API built on `std::chrono`, featuring precise clamping, scaling, and substep management.  
+> Designed as a dependable, zero-dependency utility for engines, simulations, and real-time systems.  
+> ☕ Made in an afternoon to keep everything running like clockwork.
 
 ---
 
 ### ✨ Features
 
-| | |
-|:-|:-|
-| 🕒 **Fixed timestep stepping** — via `tick()` or `push_time()` |
-| 🎯 **Deterministic updates** when fed explicit `dt` |
-| ⚙️ **Unit-safe API** with `std::chrono` |
-| 🧩 **Time scaling**, **max delta clamp**, **substep cap** |
-| 🚫 **Exception-safe** — internal try/catch maintains `noexcept` |
-| 💡 **Error hook support** for caught exceptions |
-| 🧱 **Header-only** — no external dependencies |
+| Feature | Description |
+|:--|:--|
+| 🕒 **Fixed timestep stepping** | via `tick()` or `push_time()` |
+| 🎯 **Deterministic updates** | when fed explicit `dt` |
+| ⚙️ **Unit-safe API** | built on `std::chrono` |
+| 🧩 **Time scaling**, **max delta clamp**, **substep cap** | for precise control |
+| 🚫 **Exception-safe** | internal try/catch preserves `noexcept` |
+| 💡 **Error hook support** | handle exceptions without breaking flow |
+| 🧱 **Header-only** | zero dependencies, drop-in ready |
 
 ---
+
 
 ### 🧭 Example Usage
 
@@ -126,5 +133,5 @@ SPDX Identifier: `MIT`
 
 ---
 
-**ishap** is a compact, deterministic, and expressive timestep runner —  
-a dependable foundation for simulations, engines, and real-time systems.
+Focused on precision and reuse.  
+A compact, self-contained timestep utility built for deterministic real-time systems.
